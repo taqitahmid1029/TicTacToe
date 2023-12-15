@@ -45,15 +45,28 @@ const switchTurn = (box) => {
 }
 
 const getWinner = () => {
+    // Checking who is the winner
     let winningPatterns = [[0, 1, 2], [3, 4, 5], [6, 7, 8], [0, 3, 6], [1, 4, 7], [2, 5, 8], [0, 4, 8], [2, 4, 6]];
     for (let pattern of winningPatterns) {
-        let position1 = boxes[pattern[0]].innerText, position2 = boxes[pattern[1]].innerText, position3 = boxes[pattern[2]].innerText;
+        let position1 = boxes[pattern[0]].innerText;
+        let position2 = boxes[pattern[1]].innerText;
+        let position3 = boxes[pattern[2]].innerText;
         if (position1 !== '' && position2 !== '' && position3 !== '' && position1 === position2 && position1 === position3) {
             for (let box of boxes) {
                 box.disabled = true;
             }
-            msg.innerText = position1 === 'O' ? `Congratulations! ${playerO}, you are the winner` : `Congratulations! ${playerX}, you are the winner`;
-            newGameBtn.style.display = 'inline-block';
+            msg.innerText = position1 === 'O' ? `Congratulations, ${playerO}! You are the winner.` : `Congratulations, ${playerX}! You are the winner.`;
         }
     }
+    // Checking if the game is draw
+    let emptyBox = 0;
+    for (let allBox of boxes) {
+        if (allBox.innerText === '') {
+            emptyBox++;
+        }
+    }
+    if (emptyBox === 0) {
+        msg.innerText = 'Sorry, the game is draw!';         
+    }
+    newGameBtn.style.display = 'inline-block';
 }
