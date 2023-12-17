@@ -1,9 +1,11 @@
-let playerO = prompt('Enter first player name:', 'Shradha');
-let playerX = prompt('Enter second player name:', 'Aman');
+let playerO;
+let playerX;
 let game = document.querySelector('.game');
 let startPlaying = document.querySelector('#start-playing');
 
 startPlaying.addEventListener('click', () => {
+    playerO = prompt('Enter first player name:', 'Tahmid');
+    playerX = prompt('Enter second player name:', 'Shradha');
     game.style.display = 'grid';
     startPlaying.style.display = 'none';
 })
@@ -23,6 +25,8 @@ let newGameBtn = document.getElementById('new-game');
 let msg = document.getElementById('msg');
 
 newGameBtn.addEventListener('click', () => {
+    playerO = prompt('Enter first player name:', playerO);
+    playerX = prompt('Enter second player name:', playerX);
     for (let box of boxes) {
         box.disabled = false;
         box.innerText = '';
